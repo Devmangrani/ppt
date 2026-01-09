@@ -1,0 +1,265 @@
+<!-- SLIDE 19: Testing & Validation -->
+<div class="slide" id="slide19">
+<style>
+.slide-container-s19 {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    background-color: #0f172a;
+    display: flex;
+    flex-direction: column;
+}
+.bg-pattern-s19 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+}
+.metric-card-s19 {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+.progress-ring__circle-s19 {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+.pipeline-step-s19 {
+    position: relative;
+    padding-left: 32px;
+    padding-bottom: 28px;
+}
+.pipeline-step-s19:last-child {
+    padding-bottom: 0;
+}
+.pipeline-line-s19 {
+    position: absolute;
+    left: 11px;
+    top: 24px;
+    bottom: 0;
+    width: 2px;
+    background-color: #334155;
+}
+.pipeline-step-s19:last-child .pipeline-line-s19 {
+    display: none;
+}
+.pipeline-dot-s19 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-size: 10px;
+}
+.target-zone-s19 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px dashed rgba(16, 185, 129, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.target-bullseye-s19 {
+    width: 40px;
+    height: 40px;
+    background: rgba(16, 185, 129, 0.2);
+    border: 2px solid #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+.mono-font-s19 {
+    font-family: 'JetBrains Mono', monospace;
+}
+</style>
+<div class="slide-container-s19">
+<!-- Background -->
+<div class="bg-pattern-s19"></div>
+<!-- Header -->
+<div class="relative z-10 px-16 pt-12 pb-6 flex justify-between items-end border-b border-gray-800 bg-opacity-90 bg-slate-900">
+<div>
+<p class="text-teal-400 font-mono text-base tracking-widest uppercase mb-2">Quality Assurance &amp; Performance</p>
+<h1 class="text-5xl font-bold text-white section-title">Testing &amp; Validation</h1>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-4">
+<span class="text-sm text-gray-400 font-mono uppercase">Status</span>
+<div class="bg-green-900/30 border border-green-500/30 px-4 py-2 rounded-full flex items-center gap-3">
+<div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+<span class="text-sm font-bold text-green-400">FIELD READY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 flex-1 px-16 py-16 flex gap-12">
+<!-- Left Column: Validation Roadmap -->
+<div class="w-1/3 flex flex-col">
+<h3 class="text-base font-bold text-gray-400 uppercase tracking-wider mb-8 flex items-center">
+<i class="fa-solid fa-code-branch mr-3"></i> Development Pipeline
+</h3>
+<div class="metric-card-s19 p-8 flex-1 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-48 h-48 bg-teal-500/5 rounded-full filter blur-2xl transform translate-x-15 -translate-y-15"></div>
+<div class="mt-3">
+<!-- Step 1 -->
+<div class="pipeline-step-s19">
+<div class="pipeline-line-s19"></div>
+<div class="pipeline-dot-s19 bg-slate-700 text-gray-400 border border-slate-600">
+<i class="fa-solid fa-wrench"></i>
+</div>
+<h4 class="text-white font-bold text-base mb-2">Component Testing</h4>
+<p class="text-sm text-gray-400 leading-relaxed">Unit testing of sensors, motors, and camera modules. Hardware bench validation.</p>
+<div class="flex gap-3 mt-3">
+<span class="px-3 py-1 bg-slate-800 rounded text-xs text-gray-500 border border-slate-700">ESC Calib</span>
+<span class="px-3 py-1 bg-slate-800 rounded text-xs text-gray-500 border border-slate-700">Sensor Fusion</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="pipeline-step-s19">
+<div class="pipeline-line-s19 bg-blue-900/50"></div>
+<div class="pipeline-dot-s19 bg-blue-900/50 text-blue-400 border border-blue-500/50">
+<i class="fa-solid fa-laptop-code"></i>
+</div>
+<h4 class="text-white font-bold text-base mb-2">SITL Simulation</h4>
+<p class="text-sm text-gray-400 leading-relaxed">Virtual mission runs in Gazebo/PX4. Logic verification without hardware risk.</p>
+<div class="flex gap-3 mt-3">
+<span class="px-3 py-1 bg-blue-900/20 rounded text-xs text-blue-300 border border-blue-500/20">Gazebo</span>
+<span class="px-3 py-1 bg-blue-900/20 rounded text-xs text-blue-300 border border-blue-500/20">PX4</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="pipeline-step-s19">
+<div class="pipeline-line-s19"></div>
+<div class="pipeline-dot-s19 bg-purple-900/50 text-purple-400 border border-purple-500/50">
+<i class="fa-solid fa-network-wired"></i>
+</div>
+<h4 class="text-white font-bold text-base mb-2">System Integration</h4>
+<p class="text-sm text-gray-400 leading-relaxed">Full assembly comms check. MAVLink telemetry stability and multi-drone sync.</p>
+</div>
+<!-- Step 4 -->
+<div class="pipeline-step-s19">
+<div class="pipeline-dot-s19 bg-green-900/50 text-green-400 border border-green-500/50 shadow-[0_0_10px_rgba(34,197,94,0.3)]">
+<i class="fa-solid fa-flag-checkered"></i>
+</div>
+<h4 class="text-green-400 font-bold text-base mb-2">Field Trials</h4>
+<p class="text-sm text-gray-400 leading-relaxed">Real-world deployment. Environmental stress testing and full mission loops.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Metrics & Tools -->
+<div class="w-2/3 flex flex-col">
+<h3 class="text-base font-bold text-gray-400 uppercase tracking-wider mb-8 flex items-center">
+<i class="fa-solid fa-chart-line mr-3"></i> Performance Targets
+</h3>
+<!-- Top Row: Key Metrics -->
+<div class="grid grid-cols-2 gap-9 mb-9">
+<!-- Metric 1: Detection -->
+<div class="metric-card-s19 p-8 flex items-center justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-blue-500/5 group-hover:bg-blue-500/10 transition-colors"></div>
+<div>
+<div class="text-sm text-blue-400 font-bold uppercase tracking-wider mb-3">Detection Accuracy</div>
+<div class="text-5xl font-bold text-white mono-font-s19 mb-2">95%</div>
+<p class="text-sm text-gray-400">Target Confidence Score</p>
+</div>
+<div class="relative w-36 h-36">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-slate-700" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-blue-500 progress-ring__circle-s19" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="263.89" stroke-dashoffset="13.19" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center text-blue-400 text-xl">
+<i class="fa-solid fa-eye"></i>
+</div>
+</div>
+</div>
+<!-- Metric 2: Spraying -->
+<div class="metric-card-s19 p-8 flex items-center justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-green-500/5 group-hover:bg-green-500/10 transition-colors"></div>
+<div>
+<div class="text-sm text-green-400 font-bold uppercase tracking-wider mb-3">Spraying Accuracy</div>
+<div class="text-5xl font-bold text-white mono-font-s19 mb-2">1.0<span class="text-xl text-gray-500 ml-2">ft</span></div>
+<p class="text-sm text-gray-400">Zone A Consistency</p>
+</div>
+<div class="target-zone-s19">
+<div class="target-bullseye-s19 flex items-center justify-center">
+<i class="fa-solid fa-crosshairs text-green-400 text-base"></i>
+</div>
+<!-- Simulated hits -->
+<div class="absolute top-12 left-18 w-2 h-2 bg-green-400 rounded-full"></div>
+<div class="absolute top-18 left-15 w-2 h-2 bg-green-400 rounded-full"></div>
+<div class="absolute bottom-15 right-15 w-2 h-2 bg-green-400 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Tools & Analysis -->
+<div class="flex-1 grid grid-cols-2 gap-9">
+<!-- Tool 1: Analytics -->
+<div class="metric-card-s19 p-8 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded bg-yellow-900/30 flex items-center justify-center text-yellow-400 border border-yellow-500/30">
+<i class="fa-solid fa-magnifying-glass-chart"></i>
+</div>
+<h4 class="text-white font-bold text-lg">Post-Flight Analysis</h4>
+</div>
+<p class="text-sm text-gray-400 leading-relaxed mb-6">
+Automated log parsing for PID tuning and mission replay. Identifies efficiency bottlenecks.
+</p>
+</div>
+<div class="w-full h-24 bg-slate-800/50 rounded-lg border border-slate-700 relative overflow-hidden flex items-end px-3 pb-3 gap-1.5">
+<!-- Fake Graph Bars -->
+<div class="w-1/6 bg-slate-600 h-1/3 rounded-t"></div>
+<div class="w-1/6 bg-slate-600 h-1/2 rounded-t"></div>
+<div class="w-1/6 bg-yellow-500/50 h-3/4 rounded-t"></div>
+<div class="w-1/6 bg-slate-600 h-2/3 rounded-t"></div>
+<div class="w-1/6 bg-slate-600 h-1/2 rounded-t"></div>
+<div class="w-1/6 bg-slate-600 h-1/3 rounded-t"></div>
+</div>
+</div>
+<!-- Tool 2: Simulation -->
+<div class="metric-card-s19 p-8 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded bg-indigo-900/30 flex items-center justify-center text-indigo-400 border border-indigo-500/30">
+<i class="fa-solid fa-vr-cardboard"></i>
+</div>
+<h4 class="text-white font-bold text-lg">Virtual Validation</h4>
+</div>
+<p class="text-sm text-gray-400 leading-relaxed mb-6">
+Thousands of simulated flight hours in randomized weather conditions before first takeoff.
+</p>
+</div>
+<div class="flex items-center justify-between bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+<div class="flex flex-col">
+<span class="text-xs text-gray-500 uppercase">Simulated Hours</span>
+<span class="text-base font-mono text-indigo-300">500+ HRS</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs text-gray-500 uppercase">Failures Caught</span>
+<span class="text-base font-mono text-indigo-300">42</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-8 left-16 right-16 flex justify-between items-center text-sm text-gray-500 font-mono border-t border-gray-800 pt-5">
+<div>PHASE 1A TECHNICAL REVIEW</div>
+<div>PAGE 20</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,228 @@
+<!-- SLIDE 17: Fail-Safe Features -->
+<div class="slide" id="slide17">
+<style>
+.slide-container-s17 {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    background-color: #0f172a;
+    display: flex;
+    flex-direction: column;
+}
+.bg-pattern-s17 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+}
+.fail-safe-card-s17 {
+    background-color: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.fail-safe-card-s17::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #64748b;
+}
+.card-comms-s17::before { background-color: #3b82f6; }
+.card-battery-s17::before { background-color: #f59e0b; }
+.card-fence-s17::before { background-color: #ef4444; }
+.card-alt-s17::before { background-color: #a855f7; }
+.card-gps-s17::before { background-color: #10b981; }
+.card-spray-s17::before { background-color: #f97316; }
+.action-tag-s17 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.icon-box-s17 {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.mono-font-s17 {
+    font-family: 'JetBrains Mono', monospace;
+}
+</style>
+<div class="slide-container-s17">
+<!-- Background -->
+<div class="bg-pattern-s17"></div>
+<!-- Header -->
+<div class="relative z-10 px-16 pt-12 pb-6 flex justify-between items-end border-b border-gray-800 bg-opacity-90 bg-slate-900">
+<div>
+<p class="text-red-400 font-mono text-base tracking-widest uppercase mb-2">System Protection &amp; Redundancy</p>
+<h1 class="text-5xl font-bold text-white section-title">Fail-Safe Features</h1>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-3 px-6 py-3 bg-red-900/20 border border-red-500/30 rounded">
+<i class="fa-solid fa-shield-heart text-red-500 text-lg"></i>
+<span class="text-base font-mono text-red-300">ACTIVE PROTECTION</span>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="relative z-10 flex-1 px-16 py-16">
+<div class="grid grid-cols-3 gap-9 h-full">
+<!-- 1. Communication Loss -->
+<div class="fail-safe-card-s17 card-comms-s17 rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box-s17 bg-blue-900/30 text-blue-400 border border-blue-500/30">
+<i class="fa-solid fa-tower-broadcast"></i>
+</div>
+<span class="text-sm text-gray-500 font-mono">FS_01</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Comms Loss</h3>
+<p class="text-base text-gray-400 leading-relaxed">
+Triggered when RC/Telemetry link is lost for &gt;10 seconds continuously.
+</p>
+</div>
+<div class="bg-slate-800/50 p-4 rounded mt-6 border border-slate-700">
+<p class="text-xs text-gray-500 uppercase mb-2 font-bold">Protocol Action</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold text-base">Auto Return-to-Launch</span>
+<span class="action-tag-s17 bg-blue-500/20 text-blue-300 border border-blue-500/30">RTL</span>
+</div>
+</div>
+</div>
+<!-- 2. Low Battery -->
+<div class="fail-safe-card-s17 card-battery-s17 rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box-s17 bg-yellow-900/30 text-yellow-400 border border-yellow-500/30">
+<i class="fa-solid fa-battery-quarter"></i>
+</div>
+<span class="text-sm text-gray-500 font-mono">FS_02</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Low Battery</h3>
+<p class="text-base text-gray-400 leading-relaxed">
+Multi-stage power management system based on voltage sag and remaining capacity.
+</p>
+</div>
+<div class="space-y-3 mt-6">
+<div class="bg-slate-800/50 p-3 rounded border border-slate-700 flex justify-between items-center">
+<span class="text-sm text-yellow-500 font-mono">@ 25%</span>
+<span class="action-tag-s17 bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 text-xs">RTL TRIGGER</span>
+</div>
+<div class="bg-slate-800/50 p-3 rounded border border-slate-700 flex justify-between items-center">
+<span class="text-sm text-red-500 font-mono">@ 15%</span>
+<span class="action-tag-s17 bg-red-500/20 text-red-300 border border-red-500/30 text-xs">FORCE LAND</span>
+</div>
+</div>
+</div>
+<!-- 3. Geofence Breach -->
+<div class="fail-safe-card-s17 card-fence-s17 rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box-s17 bg-red-900/30 text-red-400 border border-red-500/30">
+<i class="fa-solid fa-ban"></i>
+</div>
+<span class="text-sm text-gray-500 font-mono">FS_03</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Geofence Breach</h3>
+<p class="text-base text-gray-400 leading-relaxed">
+Virtual boundary enforcement using polygon coordinates defined in mission planner.
+</p>
+</div>
+<div class="bg-slate-800/50 p-4 rounded mt-6 border border-slate-700">
+<p class="text-xs text-gray-500 uppercase mb-2 font-bold">Protocol Action</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold text-base">Brake &amp; Return</span>
+<span class="action-tag-s17 bg-red-500/20 text-red-300 border border-red-500/30">AUTO RTL</span>
+</div>
+</div>
+</div>
+<!-- 4. Altitude Breach -->
+<div class="fail-safe-card-s17 card-alt-s17 rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box-s17 bg-purple-900/30 text-purple-400 border border-purple-500/30">
+<i class="fa-solid fa-arrow-up-from-bracket"></i>
+</div>
+<span class="text-sm text-gray-500 font-mono">FS_04</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Altitude Limit</h3>
+<p class="text-base text-gray-400 leading-relaxed">
+Firmware-level hard ceiling prevents interference with civil airspace or scan layers.
+</p>
+</div>
+<div class="bg-slate-800/50 p-4 rounded mt-6 border border-slate-700">
+<p class="text-xs text-gray-500 uppercase mb-2 font-bold">Protocol Action</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold text-base">Vertical Velocity = 0</span>
+<span class="action-tag-s17 bg-purple-500/20 text-purple-300 border border-purple-500/30">HARD LIMIT</span>
+</div>
+</div>
+</div>
+<!-- 5. GPS Loss -->
+<div class="fail-safe-card-s17 card-gps-s17 rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box-s17 bg-emerald-900/30 text-emerald-400 border border-emerald-500/30">
+<i class="fa-solid fa-satellite-dish"></i>
+</div>
+<span class="text-sm text-gray-500 font-mono">FS_05</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">GPS Loss</h3>
+<p class="text-base text-gray-400 leading-relaxed">
+Satellite signal degradation below HDOP threshold of 2.0 triggers fallback.
+</p>
+</div>
+<div class="bg-slate-800/50 p-4 rounded mt-6 border border-slate-700">
+<p class="text-xs text-gray-500 uppercase mb-2 font-bold">Protocol Action</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold text-base">Optical Flow Hold</span>
+<span class="action-tag-s17 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">ALT HOLD</span>
+</div>
+</div>
+</div>
+<!-- 6. Spray System Fault -->
+<div class="fail-safe-card-s17 card-spray-s17 rounded-xl p-8 flex flex-col justify-between group">
+<div>
+<div class="flex justify-between items-start">
+<div class="icon-box-s17 bg-orange-900/30 text-orange-400 border border-orange-500/30">
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+<span class="text-sm text-gray-500 font-mono">FS_06</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">System Fault</h3>
+<p class="text-base text-gray-400 leading-relaxed">
+Detection of pump failure, nozzle clog, or tank leak via pressure sensors.
+</p>
+</div>
+<div class="bg-slate-800/50 p-4 rounded mt-6 border border-slate-700">
+<p class="text-xs text-gray-500 uppercase mb-2 font-bold">Protocol Action</p>
+<div class="flex justify-between items-center">
+<span class="text-white font-bold text-base">Abort Mission</span>
+<span class="action-tag-s17 bg-orange-500/20 text-orange-300 border border-orange-500/30">SAFE RTL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-8 left-16 right-16 flex justify-between items-center text-sm text-gray-500 font-mono border-t border-gray-800 pt-5">
+<div>PHASE 1A TECHNICAL REVIEW</div>
+<div>PAGE 18</div>
+</div>
+</div>
+</div>

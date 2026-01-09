@@ -1,0 +1,267 @@
+<!-- SLIDE 16: GCS Technical Features & Flow -->
+<div class="slide" id="slide16">
+<style>
+.slide-container-s16 {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    background-color: #0f172a;
+    display: flex;
+    flex-direction: column;
+}
+.bg-pattern-s16 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    z-index: 0;
+}
+.feature-item-s16 {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    border-left-width: 4px;
+    transition: all 0.3s ease;
+}
+.feature-item-s16:hover {
+    background: rgba(30, 41, 59, 0.8);
+    transform: translateX(5px);
+}
+.flow-grid-s16 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 30px 45px;
+    height: 100%;
+    padding: 15px;
+}
+.flow-node-s16 {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+    border-radius: 8px;
+    padding: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+.phase-init-s16 { border-top: 3px solid #64748b; }
+.phase-scan-s16 { border-top: 3px solid #06b6d4; }
+.phase-spray-s16 { border-top: 3px solid #a855f7; }
+.phase-end-s16 { border-top: 3px solid #22c55e; }
+.arrow-right-s16 {
+    position: absolute;
+    right: -33px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #475569;
+    font-size: 21px;
+}
+.arrow-left-s16 {
+    position: absolute;
+    left: -33px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    color: #475569;
+    font-size: 21px;
+}
+.turn-down-right-s16 {
+    position: absolute;
+    right: -22px;
+    top: 50%;
+    width: 45px;
+    height: 195px;
+    border-right: 2px dashed #475569;
+    border-bottom: 2px dashed #475569;
+    border-radius: 0 0 22px 0;
+    z-index: 5;
+    pointer-events: none;
+}
+.turn-down-left-s16 {
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    width: 45px;
+    height: 195px;
+    border-left: 2px dashed #475569;
+    border-bottom: 2px dashed #475569;
+    border-radius: 0 0 0 22px;
+    z-index: 5;
+    pointer-events: none;
+}
+.mono-font-s16 {
+    font-family: 'JetBrains Mono', monospace;
+}
+</style>
+<div class="slide-container-s16">
+<!-- Background -->
+<div class="bg-pattern-s16"></div>
+<!-- Header -->
+<div class="relative z-10 px-16 pt-12 pb-6 flex justify-between items-end border-b border-gray-800 bg-opacity-90 bg-slate-900">
+<div>
+<p class="text-cyan-500 font-mono text-base tracking-widest uppercase mb-2">Architecture &amp; Workflow</p>
+<h1 class="text-5xl font-bold text-white section-title">GCS Technical Features &amp; Flow</h1>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-4">
+<span class="text-sm font-mono text-gray-500 bg-slate-800 px-3 py-1.5 rounded">ver 1.0.4</span>
+<span class="text-sm font-mono text-green-400 bg-green-900/20 px-3 py-1.5 rounded border border-green-500/30">SYSTEM READY</span>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 flex-1 px-16 py-16 flex gap-12">
+<!-- Left Column: Technical Features -->
+<div class="w-1/4 flex flex-col gap-6">
+<h3 class="text-base font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+<i class="fa-solid fa-server mr-3"></i> Technical Specs
+</h3>
+<!-- Feature 1 -->
+<div class="feature-item-s16 p-6 rounded-lg border-blue-500">
+<div class="flex items-center gap-4 mb-2">
+<i class="fa-solid fa-network-wired text-blue-400"></i>
+<h4 class="font-bold text-white text-base">MAVLink Comms</h4>
+</div>
+<p class="text-sm text-gray-400 leading-tight pl-10">Standard protocol. Ports 14550 (Scan) &amp; 14551 (Spray).</p>
+</div>
+<!-- Feature 2 -->
+<div class="feature-item-s16 p-6 rounded-lg border-green-500">
+<div class="flex items-center gap-4 mb-2">
+<i class="fa-solid fa-file-waveform text-green-400"></i>
+<h4 class="font-bold text-white text-base">Real-time Logging</h4>
+</div>
+<p class="text-sm text-gray-400 leading-tight pl-10">High-frequency telemetry logging for post-flight analysis.</p>
+</div>
+<!-- Feature 3 -->
+<div class="feature-item-s16 p-6 rounded-lg border-purple-500">
+<div class="flex items-center gap-4 mb-2">
+<i class="fa-solid fa-map-location-dot text-purple-400"></i>
+<h4 class="font-bold text-white text-base">Mission I/O</h4>
+</div>
+<p class="text-sm text-gray-400 leading-tight pl-10">KML parsing and waypoint upload/download capability.</p>
+</div>
+<!-- Feature 4 -->
+<div class="feature-item-s16 p-6 rounded-lg border-yellow-500">
+<div class="flex items-center gap-4 mb-2">
+<i class="fa-solid fa-sliders text-yellow-400"></i>
+<h4 class="font-bold text-white text-base">Param Tuning</h4>
+</div>
+<p class="text-sm text-gray-400 leading-tight pl-10">Live PID adjustment and failsafe configuration.</p>
+</div>
+<!-- Feature 5 -->
+<div class="feature-item-s16 p-6 rounded-lg border-red-500">
+<div class="flex items-center gap-4 mb-2">
+<i class="fa-solid fa-hand text-red-400"></i>
+<h4 class="font-bold text-white text-base">Safety Protocols</h4>
+</div>
+<p class="text-sm text-gray-400 leading-tight pl-10">Instant Emergency Stop &amp; RTL triggers.</p>
+</div>
+</div>
+<!-- Right Column: System Flowchart -->
+<div class="w-3/4 flex flex-col">
+<h3 class="text-base font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center">
+<i class="fa-solid fa-diagram-project mr-3"></i> System Logic Flow
+</h3>
+<div class="flex-1 bg-slate-800/30 rounded-xl border border-slate-700/50 relative">
+<!-- Grid Container for Flow -->
+<div class="flow-grid-s16">
+<!-- ROW 1: Initialization (Left to Right) -->
+<div class="flow-node-s16 phase-init-s16">
+<span class="text-xs text-gray-500 font-mono mb-2">01. STARTUP</span>
+<p class="text-sm font-bold text-gray-200"><i class="fa-brands fa-python mr-2"></i> Init Flask</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-init-s16">
+<span class="text-xs text-gray-500 font-mono mb-2">02. CONFIG</span>
+<p class="text-sm font-bold text-gray-200">Load Mission</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-init-s16">
+<span class="text-xs text-gray-500 font-mono mb-2">03. COMMS</span>
+<p class="text-sm font-bold text-gray-200">Connect MAVLink</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-init-s16">
+<span class="text-xs text-gray-500 font-mono mb-2">04. THREADS</span>
+<p class="text-sm font-bold text-gray-200">Telemetry Sync</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-init-s16">
+<span class="text-xs text-gray-500 font-mono mb-2">05. INTERFACE</span>
+<p class="text-sm font-bold text-gray-200">Launch Web UI</p>
+<div class="turn-down-right-s16"></div>
+</div>
+<!-- ROW 2: Scanning (Right to Left) -->
+<div class="flow-node-s16 phase-scan-s16" style="grid-column: 5; grid-row: 2;">
+<span class="text-xs text-cyan-500/70 font-mono mb-2">06. AUTO MODE</span>
+<p class="text-sm font-bold text-cyan-100">Start Scan</p>
+<i class="fa-solid fa-arrow-left arrow-left-s16"></i>
+</div>
+<div class="flow-node-s16 phase-scan-s16" style="grid-column: 4; grid-row: 2;">
+<span class="text-xs text-cyan-500/70 font-mono mb-2">07. VISION</span>
+<p class="text-sm font-bold text-cyan-100">Process Video</p>
+<i class="fa-solid fa-arrow-left arrow-left-s16"></i>
+</div>
+<div class="flow-node-s16 phase-scan-s16" style="grid-column: 3; grid-row: 2;">
+<span class="text-xs text-cyan-500/70 font-mono mb-2">08. AI DETECT</span>
+<p class="text-sm font-bold text-cyan-100">Object Found?</p>
+<i class="fa-solid fa-arrow-left arrow-left-s16"></i>
+</div>
+<div class="flow-node-s16 phase-scan-s16" style="grid-column: 2; grid-row: 2;">
+<span class="text-xs text-cyan-500/70 font-mono mb-2">09. DATABASE</span>
+<p class="text-sm font-bold text-cyan-100">Store Coords</p>
+<i class="fa-solid fa-arrow-left arrow-left-s16"></i>
+</div>
+<div class="flow-node-s16 phase-spray-s16" style="grid-column: 1; grid-row: 2;">
+<span class="text-xs text-purple-500/70 font-mono mb-2">10. PLANNING</span>
+<p class="text-sm font-bold text-purple-100">Gen Spray WP</p>
+<div class="turn-down-left-s16"></div>
+</div>
+<!-- ROW 3: Spraying & End (Left to Right) -->
+<div class="flow-node-s16 phase-spray-s16" style="grid-column: 1; grid-row: 3;">
+<span class="text-xs text-purple-500/70 font-mono mb-2">11. GUIDED</span>
+<p class="text-sm font-bold text-purple-100">Launch Spray</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-spray-s16" style="grid-column: 2; grid-row: 3;">
+<span class="text-xs text-purple-500/70 font-mono mb-2">12. ACTION</span>
+<p class="text-sm font-bold text-purple-100">Nav &amp; Spray</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-spray-s16" style="grid-column: 3; grid-row: 3;">
+<span class="text-xs text-purple-500/70 font-mono mb-2">13. LOOP</span>
+<p class="text-sm font-bold text-purple-100">Iterate Targets</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-end-s16" style="grid-column: 4; grid-row: 3;">
+<span class="text-xs text-green-500/70 font-mono mb-2">14. RETURN</span>
+<p class="text-sm font-bold text-green-100">RTL Mode</p>
+<i class="fa-solid fa-arrow-right arrow-right-s16"></i>
+</div>
+<div class="flow-node-s16 phase-end-s16" style="grid-column: 5; grid-row: 3;">
+<span class="text-xs text-green-500/70 font-mono mb-2">15. FINISH</span>
+<p class="text-sm font-bold text-green-100">Gen Report</p>
+<div class="absolute -top-3 -right-3 w-6 h-6 bg-green-500 rounded-full animate-pulse"></div>
+</div>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-[-45px] left-0 flex gap-9 text-xs uppercase font-mono tracking-widest">
+<div class="flex items-center gap-3"><div class="w-4 h-1.5 bg-slate-500"></div> Init</div>
+<div class="flex items-center gap-3"><div class="w-4 h-1.5 bg-cyan-500"></div> Scan</div>
+<div class="flex items-center gap-3"><div class="w-4 h-1.5 bg-purple-500"></div> Spray</div>
+<div class="flex items-center gap-3"><div class="w-4 h-1.5 bg-green-500"></div> End</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-8 left-16 right-16 flex justify-between items-center text-sm text-gray-500 font-mono border-t border-gray-800 pt-5">
+<div>PHASE 1A TECHNICAL REVIEW</div>
+<div>PAGE 17</div>
+</div>
+</div>
+</div>

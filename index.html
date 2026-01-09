@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pixel Crop Presentation</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #000;
+        color: white;
+        overflow: hidden;
+    }
+    .slide {
+        display: none;
+        width: 1920px;
+        height: 1080px;
+        position: relative;
+        background-color: #0f172a;
+    }
+    .slide.active {
+        display: flex;
+        flex-direction: column;
+    }
+    .bg-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        z-index: 0;
+    }
+    .bg-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v1H0zM0 0v40h1V0z' fill='%231e293b' fill-opacity='0.5' fill-rule='evenodd'/%3E%3C/svg%3E");
+        z-index: 0;
+    }
+    .glass-card {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s ease;
+    }
+    .role-icon {
+        background: rgba(34, 197, 94, 0.1);
+        color: #4ade80;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+    .section-title {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+    .card {
+        background-color: rgba(30, 41, 59, 0.6);
+        border: 1px solid rgba(51, 65, 85, 0.8);
+        border-radius: 0.75rem;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+    }
+    .accent-icon-box {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(34, 197, 94, 0.1);
+        color: #4ade80;
+        border-radius: 0.5rem;
+        font-size: 1.25rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+    .tier-label {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        transform: rotate(180deg);
+    }
+    .flow-line {
+        position: absolute;
+        z-index: 0;
+        border-left: 2px dashed rgba(34, 197, 94, 0.3);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .glow-icon {
+        filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.3));
+    }
+    .node-card {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(51, 65, 85, 1);
+        transition: all 0.3s ease;
+    }
+    .node-card:hover {
+        border-color: #22c55e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .controls {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 10000;
+        background: rgba(0,0,0,0.7);
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: white;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 14px;
+        border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    #slidesContainer {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+</style>
+</head>
+<body>
+
+<div class="controls">
+    <span id="slideNum">1 / 20</span> | ← → Arrow keys or Click to navigate | F11 for fullscreen
+</div>
+
+<div id="slidesContainer"></div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 20;
+const slideFiles = [
+    'slides/slide0-title-slide.html',
+    'slides/slide1-team-introduction.html',
+    'slides/slide2-problem-statement.html',
+    'slides/slide3-solution-architecture.html',
+    'slides/slide4-solution-strategy.html',
+    'slides/slide5-scan-drone-design.html',
+    'slides/slide6-spray-drone-design.html',
+    'slides/slide7-simulation-and-testing-process.html',
+    'slides/slide8-computer-vision-pipeline-1920x1080.html',
+    'slides/slide9-geotagging-and-accuracy.html',
+    'slides/slide10-spraying-mechanism-design.html',
+    'slides/slide11-spraying-accuracy-system.html',
+    'slides/slide12-path-planning.html',
+    'slides/slide13-autonomous-navigation.html',
+    'slides/slide14-multi-drone-operations.html',
+    'slides/slide15-command-control-station.html',
+    'slides/slide16-gcs-technical-features-flow.html',
+    'slides/slide17-fail-safe-features.html',
+    'slides/slide18-safety-measures.html',
+    'slides/slide19-testing-validation.html'
+];
+
+let slidesLoaded = false;
+
+async function loadSlides() {
+    const container = document.getElementById('slidesContainer');
+    
+    for (let i = 0; i < slideFiles.length; i++) {
+        try {
+            const response = await fetch(slideFiles[i]);
+            const html = await response.text();
+            
+            // Create a temporary div to parse the HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html.trim();
+            
+            // Get the slide div - prefer .slide class, otherwise get the first div
+            let slideDiv = tempDiv.querySelector('.slide');
+            if (!slideDiv) {
+                // If no .slide class, get the first div (should be the slide container)
+                slideDiv = tempDiv.querySelector('div');
+            }
+            
+            if (slideDiv) {
+                // Remove active class from all slides except first
+                if (i > 0) {
+                    slideDiv.classList.remove('active');
+                } else {
+                    slideDiv.classList.add('active');
+                }
+                
+                // Ensure slide has correct ID (slide0, slide1, slide2, etc.)
+                slideDiv.id = `slide${i}`;
+                
+                // Move all child nodes to container (this preserves styles and structure)
+                container.appendChild(slideDiv);
+            }
+        } catch (error) {
+            console.error(`Error loading slide ${i}:`, error);
+        }
+    }
+    
+    slidesLoaded = true;
+    showSlide(1);
+}
+
+function showSlide(n) {
+    if (!slidesLoaded) return;
+    
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
+    
+    if (n > totalSlides) currentSlide = 1;
+    if (n < 1) currentSlide = totalSlides;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    if (slides[currentSlide - 1]) {
+        slides[currentSlide - 1].classList.add('active');
+    }
+    document.getElementById('slideNum').textContent = `${currentSlide} / ${totalSlides}`;
+    
+    if (currentSlide === 3) {
+        setTimeout(initChart, 100);
+    }
+}
+
+function initChart() {
+    var chartDom = document.getElementById('reductionChart');
+    if (!chartDom) return;
+    
+    var myChart = echarts.init(chartDom);
+    var option = {
+        series: [{
+            type: 'gauge',
+            startAngle: 180,
+            endAngle: 0,
+            min: 0,
+            max: 100,
+            splitNumber: 2,
+            itemStyle: {
+                color: '#22c55e'
+            },
+            progress: {
+                show: true,
+                width: 8
+            },
+            pointer: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    width: 8,
+                    color: [[1, '#334155']]
+                }
+            },
+            axisTick: {
+                show: false
+            },
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            },
+            anchor: {
+                show: false
+            },
+            title: {
+                show: false
+            },
+            detail: {
+                valueAnimation: true,
+                width: '60%',
+                lineHeight: 40,
+                borderRadius: 8,
+                offsetCenter: [0, '-10%'],
+                fontSize: 18,
+                fontWeight: 'bolder',
+                formatter: '{value}%',
+                color: '#fff'
+            },
+            data: [{
+                value: 60,
+                name: 'Reduction'
+            }]
+        }]
+    };
+    myChart.setOption(option);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+        currentSlide++;
+        showSlide(currentSlide);
+    } else if (e.key === 'ArrowLeft') {
+        currentSlide--;
+        showSlide(currentSlide);
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.controls')) return;
+    
+    if (e.clientX > window.innerWidth / 2) {
+        currentSlide++;
+        showSlide(currentSlide);
+    } else {
+        currentSlide--;
+        showSlide(currentSlide);
+    }
+});
+
+// Load slides when page loads
+window.addEventListener('load', () => {
+    loadSlides();
+});
+</script>
+
+</body>
+</html>

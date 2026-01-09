@@ -1,0 +1,175 @@
+<!-- SLIDE 9: Geotagging & Accuracy -->
+<div class="slide" id="slide9">
+<div class="bg-pattern"></div>
+<!-- Header -->
+<div class="relative z-10 px-16 pt-12 pb-6 flex justify-between items-end border-b border-gray-800 bg-opacity-90 bg-slate-900">
+<div>
+<p class="text-green-500 font-mono text-base tracking-widest uppercase mb-2">Positioning Systems</p>
+<h1 class="text-5xl font-bold text-white section-title">Geotagging &amp; Accuracy</h1>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-3 text-gray-400">
+<i class="fa-solid fa-location-dot text-red-500 text-lg"></i>
+<span class="text-base font-mono">TARGET: ZONE A (1.0 FT)</span>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<div class="relative z-10 flex-1 px-16 py-14 flex gap-12">
+<!-- Left Column: Process Flow -->
+<div class="w-1/3 flex flex-col gap-6">
+<h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+<i class="fa-solid fa-code-branch mr-3 text-blue-400"></i> Logic Pipeline
+</h3>
+<!-- Step 1 -->
+<div class="tech-card rounded-xl p-7 process-arrow relative">
+<div class="flex justify-between items-start mb-3">
+<div class="text-blue-400 font-bold text-lg">01. Detection Event</div>
+<i class="fa-solid fa-camera text-gray-500 text-lg"></i>
+</div>
+<p class="text-base text-gray-300">CV pipeline identifies stressed crop via YUV/HSV analysis.</p>
+<div class="mt-3 text-sm font-mono text-blue-300 bg-blue-900/30 inline-block px-3 py-2 rounded">
+Frame: t<sub>capture</sub>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="tech-card rounded-xl p-7 process-arrow relative">
+<div class="flex justify-between items-start mb-3">
+<div class="text-purple-400 font-bold text-lg">02. Telemetry Sync</div>
+<i class="fa-solid fa-satellite-dish text-gray-500 text-lg"></i>
+</div>
+<p class="text-base text-gray-300">MAVLink message captures instantaneous drone state.</p>
+<div class="mt-3 text-sm font-mono text-purple-300 bg-purple-900/30 inline-block px-3 py-2 rounded">
+GLOBAL_POSITION_INT
+</div>
+</div>
+<!-- Step 3 -->
+<div class="tech-card rounded-xl p-7 relative">
+<div class="flex justify-between items-start mb-3">
+<div class="text-green-400 font-bold text-lg">03. Coordinate Transform</div>
+<i class="fa-solid fa-calculator text-gray-500 text-lg"></i>
+</div>
+<p class="text-base text-gray-300">Convert pixel coordinates (u,v) to geodesic (lat, lon).</p>
+<div class="mt-3 text-sm font-mono text-green-300 bg-green-900/30 inline-block px-3 py-2 rounded">
+Cam Frame → NED Frame
+</div>
+</div>
+</div>
+<!-- Middle Column: Accuracy Enhancements Diagram -->
+<div class="w-1/3 flex flex-col">
+<h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+<i class="fa-solid fa-sliders mr-3 text-yellow-400"></i> Accuracy Enhancements
+</h3>
+<div class="flex-1 tech-card rounded-xl p-8 relative overflow-hidden flex flex-col justify-between">
+<!-- Factor 1: Altitude -->
+<div class="relative z-10 bg-slate-900/80 p-5 rounded-lg border-l-4 border-yellow-500 mb-6">
+<div class="flex items-center gap-3 mb-2">
+<i class="fa-solid fa-ruler-vertical text-yellow-400 text-base"></i>
+<h4 class="font-bold text-base text-white">Altitude Scale Factor</h4>
+</div>
+<p class="text-sm text-gray-400">Dynamic pixel-to-meter scaling based on laser altimeter reading.</p>
+<div class="text-xs font-mono text-gray-500 mt-2">h_agl = 10ft ±0.1ft</div>
+</div>
+<!-- Factor 2: Gimbal -->
+<div class="relative z-10 bg-slate-900/80 p-5 rounded-lg border-l-4 border-blue-500 mb-6">
+<div class="flex items-center gap-3 mb-2">
+<i class="fa-solid fa-video text-blue-400 text-base"></i>
+<h4 class="font-bold text-base text-white">Gimbal Compensation</h4>
+</div>
+<p class="text-sm text-gray-400">Corrects for camera pitch/roll relative to horizon.</p>
+<div class="text-xs font-mono text-gray-500 mt-2">θ_pitch correction applied</div>
+</div>
+<!-- Factor 3: Wind -->
+<div class="relative z-10 bg-slate-900/80 p-5 rounded-lg border-l-4 border-red-500">
+<div class="flex items-center gap-3 mb-2">
+<i class="fa-solid fa-wind text-red-400 text-base"></i>
+<h4 class="font-bold text-base text-white">Wind Drift Estimation</h4>
+</div>
+<p class="text-sm text-gray-400">Predictive offset based on ground speed vs airspeed delta.</p>
+<div class="text-xs font-mono text-gray-500 mt-2">Δv vector analysis</div>
+</div>
+<!-- Diagram Visual Elements -->
+<div class="absolute right-6 bottom-6 w-32 h-32 opacity-30">
+<i class="fa-solid fa-drone text-7xl text-white absolute top-0 left-0"></i>
+<div class="absolute bottom-0 right-0 w-full h-px bg-white border-t border-dashed"></div>
+<div class="absolute top-6 left-10 w-px h-24 bg-yellow-500"></div>
+<div class="absolute top-10 left-10 w-20 h-20 border-t border-l border-blue-500 rounded-tl-3xl"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Results & Validation -->
+<div class="w-1/3 flex flex-col">
+<h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+<i class="fa-solid fa-bullseye mr-3 text-red-400"></i> Expected Precision
+</h3>
+<div class="flex-1 tech-card rounded-xl p-8 relative overflow-hidden flex flex-col items-center justify-center bg-slate-800/50">
+<!-- Target Visualization Container -->
+<div class="relative flex items-center justify-center mb-6">
+<!-- Concentric Circles -->
+<div class="relative w-80 h-80 flex items-center justify-center">
+<!-- Outer Ring - Zone C -->
+<div class="absolute w-80 h-80 rounded-full border-2 border-solid border-slate-600 bg-slate-900/30"></div>
+<!-- Middle Ring - Zone B -->
+<div class="absolute w-60 h-60 rounded-full border-2 border-solid border-slate-500 bg-slate-800/40"></div>
+<!-- Inner Ring - Zone A (Target) -->
+<div class="absolute w-40 h-40 rounded-full border-3 border-solid border-green-500 bg-green-900/20 shadow-[0_0_20px_rgba(34,197,94,0.3)]"></div>
+<!-- Target Center Point -->
+<div class="absolute w-6 h-6 rounded-full bg-red-500 shadow-[0_0_20px_rgba(239,68,68,0.9)] z-20"></div>
+<!-- Crosshair -->
+<div class="target-crosshair z-10"></div>
+<!-- Hit Points (Simulated accuracy) -->
+<div class="absolute top-[48%] left-[52%] w-3 h-3 bg-yellow-400 rounded-full opacity-90 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></div>
+<div class="absolute top-[51%] left-[49%] w-3 h-3 bg-yellow-400 rounded-full opacity-90 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></div>
+<div class="absolute top-[47%] left-[48%] w-3 h-3 bg-yellow-400 rounded-full opacity-90 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></div>
+<div class="absolute top-[50%] left-[51%] w-3 h-3 bg-yellow-400 rounded-full opacity-90 shadow-[0_0_8px_rgba(251,191,36,0.8)]"></div>
+<!-- Zone Labels -->
+<div class="absolute top-[10%] right-[-15%] bg-green-900/90 px-3 py-1.5 rounded-lg border border-green-500/60 shadow-lg">
+<p class="text-xs text-green-300 font-bold whitespace-nowrap">Zone A<br/><span class="text-[10px] text-green-400">1.0 ft radius</span></p>
+</div>
+<div class="absolute top-[30%] right-[-20%] bg-slate-800/90 px-3 py-1.5 rounded-lg border border-slate-600 shadow-lg">
+<p class="text-xs text-gray-400 whitespace-nowrap">Zone B<br/><span class="text-[10px] text-gray-500">3.0 ft radius</span></p>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex gap-6 justify-center w-full mb-8">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+<span class="text-sm font-semibold text-green-400">Target Zone (1.0 ft)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(251,191,36,0.6)]"></div>
+<span class="text-sm text-gray-300">Sample Points</span>
+</div>
+</div>
+<!-- Result Metrics -->
+<div class="w-full px-8 space-y-4">
+<div class="flex justify-between items-center border-b border-gray-700 pb-3">
+<span class="text-sm text-gray-400 uppercase tracking-wider font-semibold">Target Radius</span>
+<span class="text-3xl font-bold text-white mono-font">1.0 <span class="text-lg text-gray-400">ft</span></span>
+</div>
+<div class="flex justify-between items-center border-b border-gray-700 pb-3">
+<span class="text-sm text-gray-400 uppercase tracking-wider font-semibold">Confidence</span>
+<span class="text-3xl font-bold text-green-400 mono-font glow-text">95<span class="text-lg">%</span></span>
+</div>
+</div>
+<!-- Mission Specs Badge -->
+<div class="mt-6 w-full flex justify-center">
+<div class="px-8 py-3 bg-green-500/15 border-2 border-green-500/40 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+<p class="text-sm text-green-400 text-center font-bold uppercase tracking-widest flex items-center gap-2">
+<i class="fa-solid fa-check-circle text-lg"></i>
+<span>Meets Mission Specifications</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="absolute bottom-8 left-16 right-16 flex justify-between items-center text-sm text-gray-500 font-mono border-t border-gray-800 pt-5">
+<div>PHASE 1A TECHNICAL REVIEW</div>
+<div>PAGE 10</div>
+</div>
+</div>
+</div>
+</div>
