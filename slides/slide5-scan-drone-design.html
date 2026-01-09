@@ -17,7 +17,7 @@
 <div class="relative z-10 px-16 pt-12 pb-6 flex justify-between items-end border-b border-gray-800 bg-opacity-90 bg-slate-900">
 <div>
 <p class="text-blue-500 font-mono text-base tracking-widest uppercase mb-2">Aerial Tier Components</p>
-<h1 class="text-5xl font-bold text-white section-title">Scan Drone Design</h1>
+<h1 class="text-5xl font-bold text-white section-title">Scout Drone (750 mm) — Component Details</h1>
 </div>
 <div class="text-right">
 <div class="flex items-center gap-3 text-gray-400">
@@ -57,7 +57,7 @@
 <div class="text-blue-500 text-4xl mb-3">
 <i class="fa-solid fa-stopwatch"></i>
 </div>
-<div class="text-4xl font-bold text-white font-mono">30<span class="text-base text-gray-400 ml-2">min</span></div>
+<div class="text-4xl font-bold text-white font-mono">35-40<span class="text-base text-gray-400 ml-2">min</span></div>
 <p class="text-sm text-blue-300 uppercase tracking-wide mt-2">Flight Endurance</p>
 </div>
 <div class="metric-card rounded-lg p-6 flex flex-col justify-center items-center text-center">
@@ -69,106 +69,64 @@
 </div>
 </div>
 </div>
-<!-- Right Column: Technical Specs -->
+<!-- Right Column: Component Details -->
 <div class="w-7/12 flex flex-col h-full">
-<h3 class="text-2xl font-bold text-white mb-8 flex items-center">
+<h3 class="text-2xl font-bold text-white mb-6 flex items-center">
 <span class="w-3 h-10 bg-blue-500 mr-4 rounded-sm"></span>
-                Technical Specifications
+                Component Details
             </h3>
-<!-- Specs Table -->
-<div class="bg-slate-800/40 rounded-xl border border-slate-700 overflow-hidden mb-8">
-<div class="spec-row p-5 flex items-center">
-<div class="w-1/3 text-gray-400 font-medium text-base"><i class="fa-solid fa-shapes mr-3 text-blue-500 w-6"></i>Configuration</div>
-<div class="w-2/3 text-white font-mono text-base">Quadcopter (+ Type)</div>
-</div>
-<div class="spec-row p-5 flex items-center">
-<div class="w-1/3 text-gray-400 font-medium text-base"><i class="fa-solid fa-ruler-combined mr-3 text-blue-500 w-6"></i>Frame Material</div>
-<div class="w-2/3 text-white text-base">Custom Carbon Fiber (750mm+)</div>
-</div>
-<div class="spec-row p-5 flex items-center">
-<div class="w-1/3 text-gray-400 font-medium text-base"><i class="fa-solid fa-camera mr-3 text-blue-500 w-6"></i>Primary Payload</div>
-<div class="w-2/3 text-white">
-<p class="text-base">1080p RGB Camera</p>
-<p class="text-sm text-gray-400 mt-1">with Downward View</p>
+<!-- Component Details List -->
+<div class="bg-slate-800/20 rounded-xl border border-slate-700/50 flex-1 overflow-y-auto">
+<div class="p-6 space-y-5">
+<!-- 1. Airframe & Propulsion -->
+<div class="bg-slate-900/50 rounded-lg p-5 border border-slate-700">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0 font-bold">1</div>
+<div class="flex-1">
+<p class="text-white text-lg font-bold mb-2"><span class="text-blue-400">Airframe & Propulsion</span></p>
+<p class="text-gray-300 text-base leading-relaxed">750 mm carbon-fiber frame with T-Motor 5006 (320 KV) motors, 17-inch propellers, and an in-house developed 40 A ESC, optimized for low-RPM operation, high efficiency, and stable hover during long scouting missions.</p>
 </div>
 </div>
 </div>
-<!-- Sensors Section -->
-<div class="bg-slate-800/20 rounded-xl p-8 border border-slate-700/50 flex-1">
-<h4 class="text-xl text-blue-400 font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-3">
-                    Onboard Sensor Suite
-                </h4>
-<div class="grid grid-cols-2 gap-6 auto-rows-max">
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-satellite"></i>
-</div>
-<div>
-<p class="text-white text-lg font-bold">GPS Module</p>
-<p class="text-base text-gray-400 mt-1">Position Hold & Waypoint Navigation</p>
+<!-- 2. Battery Chemistry & Configuration -->
+<div class="bg-slate-900/50 rounded-lg p-5 border border-slate-700">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0 font-bold">2</div>
+<div class="flex-1">
+<p class="text-white text-lg font-bold mb-2"><span class="text-blue-400">Battery Chemistry & Configuration</span></p>
+<p class="text-gray-300 text-base leading-relaxed">Powered by 18650 Li-ion cells in a 6S3P configuration (22.2 V nominal), selected for high energy density, stable discharge behavior, and improved endurance compared to conventional Li-Po batteries.</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-wind"></i>
 </div>
-<div>
-<p class="text-white text-lg font-bold">Barometer</p>
-<p class="text-base text-gray-400 mt-1">Altitude Hold & Pressure Sensing</p>
-</div>
-</div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-compass"></i>
-</div>
-<div>
-<p class="text-white text-lg font-bold">Compass</p>
-<p class="text-base text-gray-400 mt-1">Heading Lock & Orientation</p>
+<!-- 3. Power & Control Electronics -->
+<div class="bg-slate-900/50 rounded-lg p-5 border border-slate-700">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0 font-bold">3</div>
+<div class="flex-1">
+<p class="text-white text-lg font-bold mb-2"><span class="text-blue-400">Power & Control Electronics</span></p>
+<p class="text-gray-300 text-base leading-relaxed">An in-house built power module provides regulated power rails, voltage and current sensing, and electrical noise isolation, ensuring reliable operation of the flight controller and onboard peripherals.</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-shield"></i>
 </div>
-<div>
-<p class="text-white text-lg font-bold">Vibration Dampeners</p>
-<p class="text-base text-gray-400 mt-1">Camera Stabilization System</p>
-</div>
-</div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-gauge-high"></i>
-</div>
-<div>
-<p class="text-white text-lg font-bold">IMU (Inertial Measurement Unit)</p>
-<p class="text-base text-gray-400 mt-1">Gyroscope & Accelerometer Fusion</p>
+<!-- 4. Navigation & Positioning -->
+<div class="bg-slate-900/50 rounded-lg p-5 border border-slate-700">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0 font-bold">4</div>
+<div class="flex-1">
+<p class="text-white text-lg font-bold mb-2"><span class="text-blue-400">Navigation & Positioning</span></p>
+<p class="text-gray-300 text-base leading-relaxed">Uses an M10 GNSS module with multi-constellation support, enabling faster position lock, accurate waypoint navigation, and reliable geo-tagging during autonomous scanning missions.</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-signal"></i>
 </div>
-<div>
-<p class="text-white text-lg font-bold">Telemetry Radio</p>
-<p class="text-base text-gray-400 mt-1">Real-time Data Transmission</p>
-</div>
-</div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-battery-full"></i>
-</div>
-<div>
-<p class="text-white text-lg font-bold">Battery Monitor</p>
-<p class="text-base text-gray-400 mt-1">Voltage & Current Sensing</p>
+<!-- 5. Endurance & Mission Focus -->
+<div class="bg-slate-900/50 rounded-lg p-5 border border-slate-700">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0 font-bold">5</div>
+<div class="flex-1">
+<p class="text-white text-lg font-bold mb-2"><span class="text-blue-400">Endurance & Mission Focus</span></p>
+<p class="text-gray-300 text-base leading-relaxed">With an average hover power of ~450–500 W and usable energy of ~200–220 Wh, the drone achieves an estimated 35-40 minutes of flight time, optimized for crop scouting and data acquisition.</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
-<i class="fa-solid fa-eye"></i>
-</div>
-<div>
-<p class="text-white text-lg font-bold">Optical Flow Sensor</p>
-<p class="text-base text-gray-400 mt-1">Ground Speed & Position Tracking</p>
 </div>
 </div>
 </div>
