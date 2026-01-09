@@ -21,15 +21,15 @@
     z-index: 0;
 }
 .state-node {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: rgba(30, 41, 59, 0.8);
-    border: 2px solid #475569;
+    border: 3px solid #475569;
     backdrop-filter: blur(5px);
     position: absolute;
     z-index: 10;
@@ -38,20 +38,20 @@
 }
 .state-node.idle { border-color: #94a3b8; color: #94a3b8; }
 .state-node.takeoff { border-color: #3b82f6; color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
-.state-node.scan { border-color: #3b82f6; color: white; background: rgba(59, 130, 246, 0.2); width: 120px; height: 120px; }
+.state-node.scan { border-color: #3b82f6; color: white; background: rgba(59, 130, 246, 0.2); width: 170px; height: 170px; }
 .state-node.hover { border-color: #a855f7; color: #a855f7; background: rgba(168, 85, 247, 0.1); }
-.state-node.spray { border-color: #a855f7; color: white; background: rgba(168, 85, 247, 0.2); width: 120px; height: 120px; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+.state-node.spray { border-color: #a855f7; color: white; background: rgba(168, 85, 247, 0.2); width: 170px; height: 170px; box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
 .state-node.rtl { border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
 .state-node.land { border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1); }
 .state-label {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 .state-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 .connector-svg {
     position: absolute;
@@ -65,8 +65,8 @@
 .flow-path {
     fill: none;
     stroke: #475569;
-    stroke-width: 2;
-    stroke-dasharray: 6;
+    stroke-width: 3;
+    stroke-dasharray: 8;
     animation: dash 30s linear infinite;
 }
 .flow-path.active {
@@ -119,7 +119,7 @@
 <!-- Main Content -->
 <div class="relative z-10 flex-1 p-10 flex gap-8">
 <!-- Left Column: Navigation Details -->
-<div class="w-1/3 flex flex-col justify-between z-20">
+<div class="w-1/4 flex flex-col justify-between z-20">
 <div class="space-y-6">
 <!-- Feature 1 -->
 <div class="nav-card p-5 rounded-xl border-l-4 border-blue-500">
@@ -181,79 +181,79 @@
 </div>
 </div>
 <!-- Right Column: State Machine Diagram -->
-<div class="w-2/3 relative rounded-2xl bg-slate-900/30 border border-slate-800 backdrop-blur-sm">
+<div class="w-3/4 relative rounded-2xl bg-slate-900/30 border border-slate-800 backdrop-blur-sm">
 <!-- SVG Connectors -->
 <svg class="connector-svg">
 <defs>
-<marker id="arrowhead" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
-<polygon fill="#475569" points="0 0, 10 3.5, 0 7"></polygon>
+<marker id="arrowhead" markerheight="10" markerwidth="14" orient="auto" refx="12" refy="5">
+<polygon fill="#475569" points="0 0, 14 5, 0 10"></polygon>
 </marker>
-<marker id="arrowhead-active" markerheight="7" markerwidth="10" orient="auto" refx="9" refy="3.5">
-<polygon fill="#64748b" points="0 0, 10 3.5, 0 7"></polygon>
+<marker id="arrowhead-active" markerheight="10" markerwidth="14" orient="auto" refx="12" refy="5">
+<polygon fill="#64748b" points="0 0, 14 5, 0 10"></polygon>
 </marker>
 </defs>
 <!-- IDLE to TAKEOFF -->
-<path class="flow-path active" d="M 100 280 L 190 280" marker-end="url(#arrowhead-active)"></path>
+<path class="flow-path active" d="M 140 350 L 250 350" marker-end="url(#arrowhead-active)"></path>
 <!-- TAKEOFF to SCAN -->
-<path class="flow-path active" d="M 290 280 L 370 280" marker-end="url(#arrowhead-active)"></path>
+<path class="flow-path active" d="M 390 350 L 500 350" marker-end="url(#arrowhead-active)"></path>
 <!-- SCAN to HOVER (Loop/Branch) -->
-<path class="flow-path" d="M 490 280 L 570 280" marker-end="url(#arrowhead)"></path>
+<path class="flow-path" d="M 670 350 L 800 350" marker-end="url(#arrowhead)"></path>
 <!-- HOVER to SPRAY -->
-<path class="flow-path" d="M 620 330 L 620 380" marker-end="url(#arrowhead)"></path>
+<path class="flow-path" d="M 850 420 L 850 500" marker-end="url(#arrowhead)"></path>
 <!-- SPRAY to HOVER (Return) -->
-<path class="flow-path" d="M 670 410 C 720 410, 720 280, 670 280" marker-end="url(#arrowhead)" style="stroke-dasharray: 4; stroke: #a855f7;"></path>
+<path class="flow-path" d="M 920 540 C 980 540, 980 350, 920 350" marker-end="url(#arrowhead)" style="stroke-dasharray: 6; stroke: #a855f7;"></path>
 <!-- HOVER to SCAN (Return) -->
-<path class="flow-path" d="M 620 230 C 620 180, 430 180, 430 220" marker-end="url(#arrowhead)" style="stroke-dasharray: 4; stroke: #3b82f6;"></path>
+<path class="flow-path" d="M 850 280 C 850 220, 540 220, 540 280" marker-end="url(#arrowhead)" style="stroke-dasharray: 6; stroke: #3b82f6;"></path>
 <!-- SCAN to RTL (End of Mission) -->
-<path class="flow-path" d="M 460 335 C 460 380, 400 480, 290 480" marker-end="url(#arrowhead)"></path>
+<path class="flow-path" d="M 600 420 C 600 480, 500 600, 390 600" marker-end="url(#arrowhead)"></path>
 <!-- HOVER to RTL (Abort) -->
-<path class="flow-path" d="M 640 330 C 680 480, 500 480, 290 480" marker-end="url(#arrowhead)" style="stroke: #ef4444; opacity: 0.5;"></path>
+<path class="flow-path" d="M 880 420 C 940 600, 600 600, 390 600" marker-end="url(#arrowhead)" style="stroke: #ef4444; opacity: 0.5;"></path>
 <!-- RTL to LAND -->
-<path class="flow-path active" d="M 190 480 L 100 480" marker-end="url(#arrowhead-active)"></path>
+<path class="flow-path active" d="M 250 600 L 140 600" marker-end="url(#arrowhead-active)"></path>
 </svg>
 <!-- Nodes -->
 <!-- IDLE -->
-<div class="state-node idle" style="left: 50px; top: 230px;">
+<div class="state-node idle" style="left: 70px; top: 280px;">
 <i class="fa-solid fa-power-off state-icon"></i>
 <span class="state-label">IDLE</span>
 </div>
 <!-- TAKEOFF -->
-<div class="state-node takeoff" style="left: 190px; top: 230px;">
+<div class="state-node takeoff" style="left: 250px; top: 280px;">
 <i class="fa-solid fa-plane-departure state-icon"></i>
 <span class="state-label">TAKEOFF</span>
 </div>
 <!-- SCAN -->
-<div class="state-node scan" style="left: 370px; top: 220px;">
+<div class="state-node scan" style="left: 500px; top: 265px;">
 <i class="fa-solid fa-binoculars state-icon"></i>
 <span class="state-label">SCAN</span>
-<span class="text-[10px] text-blue-300 font-mono mt-1">AUTO MODE</span>
+<span class="text-xs text-blue-300 font-mono mt-1">AUTO MODE</span>
 </div>
 <!-- HOVER -->
-<div class="state-node hover" style="left: 570px; top: 230px;">
+<div class="state-node hover" style="left: 800px; top: 280px;">
 <i class="fa-solid fa-pause state-icon"></i>
 <span class="state-label">HOVER</span>
 </div>
 <!-- SPRAY -->
-<div class="state-node spray" style="left: 560px; top: 380px;">
+<div class="state-node spray" style="left: 780px; top: 480px;">
 <i class="fa-solid fa-spray-can state-icon"></i>
 <span class="state-label">SPRAY</span>
-<span class="text-[10px] text-purple-300 font-mono mt-1">GUIDED MODE</span>
+<span class="text-xs text-purple-300 font-mono mt-1">GUIDED MODE</span>
 </div>
 <!-- RTL -->
-<div class="state-node rtl" style="left: 190px; top: 430px;">
+<div class="state-node rtl" style="left: 250px; top: 550px;">
 <i class="fa-solid fa-house-signal state-icon"></i>
 <span class="state-label">RTL</span>
 </div>
 <!-- LAND -->
-<div class="state-node land" style="left: 50px; top: 430px;">
+<div class="state-node land" style="left: 70px; top: 550px;">
 <i class="fa-solid fa-plane-arrival state-icon"></i>
 <span class="state-label">LAND</span>
 </div>
 <!-- Labels on Diagram -->
-<div class="absolute top-[180px] left-[450px] text-[10px] text-blue-400 font-mono bg-blue-900/40 px-2 py-1 rounded">Resume Mission</div>
-<div class="absolute top-[260px] left-[505px] text-[10px] text-yellow-400 font-mono bg-yellow-900/40 px-2 py-1 rounded">Target Found</div>
-<div class="absolute top-[340px] left-[630px] text-[10px] text-purple-400 font-mono bg-purple-900/40 px-2 py-1 rounded">Action</div>
-<div class="absolute top-[400px] left-[350px] text-[10px] text-gray-500 font-mono">Mission Complete</div>
+<!-- <div class="absolute top-[180px] left-[450px] text-[10px] text-blue-400 font-mono bg-blue-900/40 px-2 py-1 rounded">Resume Mission</div> -->
+<!-- <div class="absolute top-[260px] left-[505px] text-[10px] text-yellow-400 font-mono bg-yellow-900/40 px-2 py-1 rounded">Target Found</div> -->
+<div class="absolute top-[420px] left-[850px] text-xs text-purple-400 font-mono bg-purple-900/40 px-3 py-1 rounded">Action</div>
+<!-- <div class="absolute top-[400px] left-[350px] text-[10px] text-gray-500 font-mono">Mission Complete</div> -->
 </div>
 </div>
 <!-- Footer -->

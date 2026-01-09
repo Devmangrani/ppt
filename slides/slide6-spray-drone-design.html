@@ -32,7 +32,7 @@
 <div class="w-5/12 h-full flex flex-col">
 <div class="relative w-full h-96 bg-slate-800 rounded-lg overflow-hidden tech-border mb-8 group">
 <!-- Drone Image Placeholder - Agricultural Drone -->
-<img alt="Spray Drone Quadcopter" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="https://page.gensparksite.com/slides_images/ff0c47f96ba7a42fa86b85d5ff43ea05.webp" style="mix-blend-mode: luminosity;"/>
+<img alt="Spray Drone Quadcopter" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" src="slides/scandrone.jpeg" style="mix-blend-mode: luminosity;"/>
 <div class="absolute inset-0 bg-blue-900/20 mix-blend-overlay"></div>
 <!-- Overlay Graphics -->
 <div class="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
@@ -64,7 +64,7 @@
 <div class="text-blue-500 text-4xl mb-3">
 <i class="fa-solid fa-weight-hanging"></i>
 </div>
-<div class="text-4xl font-bold text-white font-mono">8<span class="text-base text-gray-400 ml-2">kg</span></div>
+<div class="text-4xl font-bold text-white font-mono">7<span class="text-base text-gray-400 ml-2">kg</span></div>
 <p class="text-sm text-blue-300 uppercase tracking-wide mt-2">Max Takeoff Weight</p>
 </div>
 </div>
@@ -95,44 +95,80 @@
 </div>
 <!-- Sensors Section -->
 <div class="bg-slate-800/20 rounded-xl p-8 border border-slate-700/50 flex-1">
-<h4 class="text-base text-blue-400 font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-3">
+<h4 class="text-xl text-blue-400 font-bold uppercase tracking-wider mb-6 border-b border-slate-700 pb-3">
                     Navigation &amp; Safety Sensors
                 </h4>
 <div class="grid grid-cols-2 gap-6 auto-rows-max">
-<div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-10 h-10 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
 <i class="fa-solid fa-satellite"></i>
 </div>
 <div>
-<p class="text-white text-base font-bold">GPS Module</p>
-<p class="text-sm text-gray-500">Dual-Antenna</p>
+<p class="text-white text-lg font-bold">GPS Module</p>
+<p class="text-base text-gray-400 mt-1">Dual-Antenna RTK Positioning</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-10 h-10 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
 <i class="fa-solid fa-wind"></i>
 </div>
 <div>
-<p class="text-white text-base font-bold">Barometer</p>
-<p class="text-sm text-gray-500">Altitude Hold</p>
+<p class="text-white text-lg font-bold">Barometer</p>
+<p class="text-base text-gray-400 mt-1">Altitude Hold & Pressure Sensing</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-10 h-10 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
 <i class="fa-solid fa-compass"></i>
 </div>
 <div>
-<p class="text-white text-base font-bold">Compass</p>
-<p class="text-sm text-gray-500">Heading Lock</p>
+<p class="text-white text-lg font-bold">Compass</p>
+<p class="text-base text-gray-400 mt-1">Heading Lock & Orientation</p>
 </div>
 </div>
-<div class="flex items-center gap-4 p-4 bg-slate-900/50 rounded border border-slate-700">
-<div class="w-10 h-10 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
 <i class="fa-solid fa-water"></i>
 </div>
 <div>
-<p class="text-white text-base font-bold">Ultrasonic</p>
-<p class="text-sm text-gray-500">Terrain Following</p>
+<p class="text-white text-lg font-bold">Ultrasonic Sensor</p>
+<p class="text-base text-gray-400 mt-1">Terrain Following & Obstacle Avoidance</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
+<i class="fa-solid fa-gauge-high"></i>
+</div>
+<div>
+<p class="text-white text-lg font-bold">IMU (Inertial Measurement Unit)</p>
+<p class="text-base text-gray-400 mt-1">Gyroscope & Accelerometer Fusion</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
+<i class="fa-solid fa-signal"></i>
+</div>
+<div>
+<p class="text-white text-lg font-bold">Telemetry Radio</p>
+<p class="text-base text-gray-400 mt-1">Real-time Data & Command Link</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
+<i class="fa-solid fa-battery-full"></i>
+</div>
+<div>
+<p class="text-white text-lg font-bold">Battery Monitor</p>
+<p class="text-base text-gray-400 mt-1">Voltage, Current & Capacity Sensing</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-5 bg-slate-900/50 rounded border border-slate-700">
+<div class="w-14 h-14 rounded bg-blue-900/30 flex items-center justify-center text-blue-400 text-xl flex-shrink-0">
+<i class="fa-solid fa-droplet"></i>
+</div>
+<div>
+<p class="text-white text-lg font-bold">Flow Sensor</p>
+<p class="text-base text-gray-400 mt-1">Spray Rate & Volume Monitoring</p>
 </div>
 </div>
 </div>
